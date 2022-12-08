@@ -26,18 +26,6 @@ type Day struct {
 	Exercises map[string]Exercise `json:",inline"`
 }
 
-func (d Day) GetExercise(name string) (Exercise, error) {
-	var (
-		ex Exercise
-		ok bool
-	)
-	if ex, ok = d.Exercises[name]; !ok {
-		return Exercise{}, fmt.Errorf("%s %w", name, ErrNotFound)
-	}
-
-	return ex, nil
-}
-
 // Registry is a synchronized collection of days
 type Registry struct {
 	days map[string]Day
